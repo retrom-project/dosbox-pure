@@ -70,7 +70,7 @@ def finalize(output: Path, core_id: str) -> None:
               "sha256": digest(output / name)} for name in expected]
     descriptor = {
         "adapterAbi": fork["adapterAbi"],
-        "branch": git_bytes("symbolic-ref", "--quiet", "--short", "HEAD").decode().strip(),
+        "branch": git_bytes("rev-parse", "--abbrev-ref", "HEAD").decode().strip(),
         "commit": git_bytes("rev-parse", "HEAD").decode().strip(),
         "coreId": core_id,
         "dirty": bool(git_bytes("status", "--porcelain=v1", "-z")),
