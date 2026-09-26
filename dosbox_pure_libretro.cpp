@@ -65,8 +65,10 @@ static bool dbp_game_running, dbp_pause_events, dbp_paused_midframe, dbp_frame_p
 #include <emscripten/emscripten.h>
 extern "C" EMSCRIPTEN_KEEPALIVE int retrom_dos_state_ready(void)
 {
+	// The serializer coordinates with a pending frame itself. Waiting for an
+	// empty frame slot would never admit normal gameplay.
 	return (dbp_state == DBPSTATE_RUNNING || dbp_state == DBPSTATE_FIRST_FRAME) &&
-		dbp_game_running && !dbp_frame_pending && dbp_serializemode != DBPSERIALIZE_DISABLED;
+		dbp_game_running && dbp_serializemode != DBPSERIALIZE_DISABLED;
 }
 #endif
 static bool dbp_optionsupdatecallback, dbp_reboot_set64mem, dbp_use_network, dbp_had_game_running, dbp_strict_mode, dbp_legacy_save, dbp_wasloaded, dbp_skip_c_mount;
