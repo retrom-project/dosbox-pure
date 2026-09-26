@@ -60,6 +60,15 @@ static retro_system_av_info av_info;
 static enum DBP_State : Bit8u { DBPSTATE_BOOT, DBPSTATE_EXITED, DBPSTATE_SHUTDOWN, DBPSTATE_REBOOT, DBPSTATE_FIRST_FRAME, DBPSTATE_RUNNING } dbp_state;
 static enum DBP_SerializeMode : Bit8u { DBPSERIALIZE_STATES, DBPSERIALIZE_REWIND, DBPSERIALIZE_DISABLED } dbp_serializemode;
 static bool dbp_game_running, dbp_pause_events, dbp_paused_midframe, dbp_frame_pending, dbp_biosreboot, dbp_biospoweroff, dbp_system_cached, dbp_system_scannable, dbp_refresh_memmaps;
+
+#ifdef __EMSCRIPTEN__
+#include <emscripten/emscripten.h>
+extern "C" EMSCRIPTEN_KEEPALIVE int retrom_dos_state_ready(void)
+{
+	return (dbp_state == DBPSTATE_RUNNING || dbp_state == DBPSTATE_FIRST_FRAME) &&
+		dbp_game_running && !dbp_frame_pending && dbp_serializemode != DBPSERIALIZE_DISABLED;
+}
+#endif
 static bool dbp_optionsupdatecallback, dbp_reboot_set64mem, dbp_use_network, dbp_had_game_running, dbp_strict_mode, dbp_legacy_save, dbp_wasloaded, dbp_skip_c_mount;
 static signed char dbp_menu_time, dbp_conf_loading, dbp_reboot_machine;
 static Bit8u dbp_alphablend_base;
