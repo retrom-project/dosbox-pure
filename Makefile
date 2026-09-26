@@ -134,6 +134,12 @@ else ifeq ($(platform),libnx)
   COMMONFLAGS += -march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIC
   STATIC_LINKING = 1
   SOURCES += libretro-common/features/features_cpu.c
+else ifeq ($(platform),emscripten)
+  OUTNAME := dosbox_pure_libretro_emscripten.bc
+  CXX     := em++
+  AR      := emar
+  STATIC_LINKING = 1
+  COMMONFLAGS += -pthread -DDISABLE_DYNAREC=1
 else ifeq ($(platform),gcw0)
   # You must used the toolchain built on or around 2014-08-20
   OUTNAME := dosbox_pure_libretro.so

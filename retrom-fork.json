@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "forkRepository": "https://github.com/retrom-project/dosbox-pure",
+  "defaultBranch": "retrom/g3a5222c97456",
+  "upstreamMirrorBranch": "main",
+  "upstreams": [
+    {
+      "role": "libretro-core",
+      "repository": "https://github.com/schellingb/dosbox-pure",
+      "refType": "COMMIT",
+      "ref": "3a5222c97456e8df90983eb546f4d866b0feb848",
+      "commit": "3a5222c97456e8df90983eb546f4d866b0feb848"
+    },
+    {
+      "role": "emulatorjs-retroarch-linker",
+      "repository": "https://github.com/EmulatorJS/RetroArch",
+      "refType": "COMMIT",
+      "ref": "6dd4353937ef48b6ec0bfbdbb15d1c5992d86927",
+      "commit": "6dd4353937ef48b6ec0bfbdbb15d1c5992d86927"
+    }
+  ],
+  "adapterAbi": "emulatorjs-content-io-v1",
+  "releaseAssets": ["dosbox_pure-thread-wasm.data", "LICENSE.md", "source.tar.gz", "rpg-runtime-release.json"]
+}
