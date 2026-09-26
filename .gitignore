@@ -16,3 +16,5 @@ libs/
 *.so
 *.dylib
 jni/*.bat
+.retrom-build/
+dosbox_pure_libretro_emscripten.bc
