@@ -19,6 +19,7 @@ git -C /work/retroarch remote add origin https://github.com/EmulatorJS/RetroArch
 git -C /work/retroarch fetch -q --depth 1 origin 6dd4353937ef48b6ec0bfbdbb15d1c5992d86927
 git -C /work/retroarch checkout -q --detach FETCH_HEAD
 install -m 0644 /work/retroarch/COPYING /output/retroarch-COPYING
+python3 /recipe/patch-retroarch-state-status.py
 python3 - <<'PY'
 from pathlib import Path
 
